@@ -47,6 +47,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -95,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChangeSpriteArray:
-  - {fileID: 21300000, guid: 21d0cf58b38a24546b17ebf242fe23fe, type: 3}
+  - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 21300000, guid: 62a49d2d5547b7e498bf0e9bf6801d17, type: 3}
   - {fileID: 21300000, guid: 63c4bff1eadd96948b3d3d7ef86f11f4, type: 3}
   - {fileID: 21300000, guid: 988097851ceece647a43433e7892fc7d, type: 3}
@@ -105,9 +106,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bc7b4a6508748514781d6d5c354cdbbb, type: 3}
   - {fileID: 21300000, guid: 7d7742b107d828d4181e317c0783a6ed, type: 3}
   - {fileID: 21300000, guid: 6e34c2502d9d1564b9fd126e5303d837, type: 3}
-  - {fileID: 21300000, guid: 7565336348d375f419465134ddf60d24, type: 3}
-  - {fileID: 21300000, guid: 63322187f844ee54e9e5e36367c82574, type: 3}
-  m_IsMine: 0
+  MineSprite: {fileID: 21300000, guid: 8684dad9027d019418f5f48130fcc6aa, type: 3}
 --- !u!61 &8905756036042969196
 BoxCollider2D:
   m_ObjectHideFlags: 0
