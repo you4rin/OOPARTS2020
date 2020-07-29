@@ -15,11 +15,11 @@ public class UIManager : MonoBehaviour
 
 	}
 
-	void LoadMenu() {
-		
+	public void LoadMenu() {
+		// Activate Menu object
 	}
 
-	void CloseMenu() {
-
+	public void CloseMenu() {
+		// Deactivate Menu object
 	}
 }
