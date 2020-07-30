@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 	private bool firstPlay;
-	public GameObject Menu;
+	public GameObject menu;
+	public GameObject mainObject;
+	public Button pauseButton;
 	// Start is called before the first frame update
 	void Start() {
 		firstPlay = true;
@@ -20,14 +22,16 @@ public class GameManager : MonoBehaviour
 
 	public void LoadMenu() {
 		// Activate Menu object
-		gameObject.SetActive(false);
-		Menu.SetActive(true);
+		pauseButton.gameObject.SetActive(false);
+		mainObject.gameObject.SetActive(false);
+		menu.gameObject.SetActive(true);
 	}
 
 	public void CloseMenu() {
 		// Deactivate Menu object
-		Menu.SetActive(false);
-		gameObject.SetActive(true);
+		menu.gameObject.SetActive(false);
+		mainObject.gameObject.SetActive(true);
+		pauseButton.gameObject.SetActive(true);
 	}
 
 	public void PlayButtonOnClick() {
