@@ -34,7 +34,7 @@ public class Tile : MonoBehaviour
         m_SpriteRender.sprite = ChangeSpriteArray[P_index];
     }
 
-    void LeftClick()   //좌클릭 후 작동
+    public void LeftClick()   //좌클릭 후 작동
     {
 
         if (m_IsMine)   //게임오버
@@ -56,7 +56,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    void RightClick() //우클릭 후 작동
+    public void RightClick() //우클릭 후 작동
     {
         if (m_SpriteRender.sprite == ChangeSpriteArray[NORMAL_SPRITE])
         {
@@ -81,7 +81,7 @@ public class Tile : MonoBehaviour
     }
 
 
-    void Start()
+    void OnEnable()
     {
         m_SpriteRender = this.GetComponent<SpriteRenderer>();
         LinkGridManager = GameObject.FindObjectOfType<GridManager>();
@@ -95,7 +95,7 @@ public class Tile : MonoBehaviour
             LeftClick();
             if (LinkGridManager.IsFinished())   //스테이지 클리어
             {
-                LinkGridManager.UnCoverMines();
+                LinkGridManager.ShowMine();
                 Debug.LogFormat("스테이지 클리어");
             }
         }
@@ -104,7 +104,7 @@ public class Tile : MonoBehaviour
             RightClick();
             if (LinkGridManager.IsFinished())   //스테이지 클리어
             {
-                LinkGridManager.UnCoverMines();
+                LinkGridManager.ShowMine();
                 Debug.LogFormat("스테이지 클리어");
             }
         }

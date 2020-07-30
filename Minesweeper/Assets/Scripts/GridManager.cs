@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class GridManager : MonoBehaviour
 
     public Tile[,] ElementArray;
     public List<Vector2Int> MineCoords = new List<Vector2Int>();
+    public List<Vector2Int> HintList = new List<Vector2Int>();
  
 
     void Awake()
@@ -76,10 +78,17 @@ public class GridManager : MonoBehaviour
 
     void SettingMines()   //지뢰 세팅
     {
-
         foreach (Vector2Int nextMine in MineCoords)
         {
             ElementArray[nextMine.x, nextMine.y].IsMine = true;
+        }
+    }
+
+    void SetHint()
+    {
+        foreach (Vector2Int nextHint in HintList)
+        {
+            ElementArray[nextHint.x, nextHint.y].LeftClick();
         }
     }
 
@@ -126,7 +135,7 @@ public class GridManager : MonoBehaviour
         return true;
     }
 
-    public void UnCoverMines()   //게임 클리어 시 지뢰 공개
+    public void ShowMine()   //게임 클리어 시 지뢰 공개
     {
         foreach (var item in ElementArray)
         {
@@ -152,6 +161,7 @@ public class GridManager : MonoBehaviour
     {
         TileGenarator();
         SettingMines();
+        SetHint();
     }
 
 
