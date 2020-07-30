@@ -332,7 +332,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 594786643}
         m_MethodName: CloseMenu
         m_Mode: 1
         m_Arguments:
@@ -343,7 +343,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 594786643}
         m_MethodName: MoveToStageSelect
         m_Mode: 1
         m_Arguments:
@@ -1193,7 +1193,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 594786643}
         m_MethodName: CloseMenu
         m_Mode: 1
         m_Arguments:
