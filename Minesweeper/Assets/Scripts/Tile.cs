@@ -51,6 +51,7 @@ public class Tile : MonoBehaviour
 
             if (LinkGridManager.IsFinished())   //스테이지 클리어
             {
+                LinkGridManager.UnCoverMines();
                 Debug.LogFormat("스테이지 클리어");
             }
         }
