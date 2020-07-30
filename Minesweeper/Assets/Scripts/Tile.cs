@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+
     // Start is called before the first frame update
 
     public Sprite[] ChangeSpriteArray;
@@ -62,6 +63,7 @@ public class Tile : MonoBehaviour
         return m_SpriteRender.sprite.texture.name == "tile-normal-1";
     }
 
+
     void Start()
     {
         m_SpriteRender = this.GetComponent<SpriteRenderer>();
@@ -69,8 +71,4 @@ public class Tile : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        
-    }
 }

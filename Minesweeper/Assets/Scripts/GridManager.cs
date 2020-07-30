@@ -117,7 +117,7 @@ public class GridManager : MonoBehaviour
     {
         foreach (var item in ElementArray)
         {
-            if (item.IsCovered() && !item.IsMine)
+            if (item.IsCovered() && item.IsMine)
             {
                 return false;
             }
@@ -153,29 +153,34 @@ public class GridManager : MonoBehaviour
         SettingMines();
     }
 
-    /*     마우스 우클릭 <오류남>
-    public Camera cam;
+    //마우스 우클릭
     public Sprite FlagSprite;
     public Sprite DefaultSprite;
     void Update()
     {
-        
+
         if (Input.GetMouseButtonDown(1))
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.LogFormat("ok");
                 SpriteRenderer SubSpriteRender = hit.transform.GetComponent<SpriteRenderer>();
+
+
                 if (SubSpriteRender.sprite == FlagSprite)
                 {
                     SubSpriteRender.sprite = DefaultSprite;
                 }
-                SubSpriteRender.sprite = FlagSprite;
+                else
+                {
+                    SubSpriteRender.sprite = FlagSprite;
+                }
+
+
             }
         }
         
     }
-    */
+
 }
