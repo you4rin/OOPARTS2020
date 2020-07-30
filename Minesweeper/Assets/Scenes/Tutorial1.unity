@@ -140,6 +140,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
         type: 3}
+      propertyPath: MineArray_X.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
+        type: 3}
+      propertyPath: MineArray_Y.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
+        type: 3}
       propertyPath: WidthBlock
       value: 3
       objectReference: {fileID: 0}
@@ -176,6 +186,36 @@ PrefabInstance:
     - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
         type: 3}
       propertyPath: "MineArray_Y_0\uBD80\uD130.Array.data[3]"
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
+        type: 3}
+      propertyPath: MineArray_X.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
+        type: 3}
+      propertyPath: MineArray_X.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
+        type: 3}
+      propertyPath: MineArray_X.Array.data[3]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
+        type: 3}
+      propertyPath: MineArray_Y.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
+        type: 3}
+      propertyPath: MineArray_Y.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
+        type: 3}
+      propertyPath: MineArray_Y.Array.data[3]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7462933388930458145, guid: d0c1a95d647f59f44a54c34f23e79d5a,
