@@ -14,8 +14,7 @@ public class GridManager : MonoBehaviour
     protected int RemainMines;
 
     public Tile[,] ElementArray;
-    public List<int> MineArray_X = new List<int>();   //가로
-    public List<int> MineArray_Y = new List<int>();   //세로
+    public List<Vector2Int> MineCoords = new List<Vector2Int>();
  
 
     void Awake()
@@ -77,9 +76,10 @@ public class GridManager : MonoBehaviour
 
     void SettingMines()   //지뢰 세팅
     {
-        for (int i = 0; i < MineArray_Y.Count; i++)
+
+        foreach (Vector2Int nextMine in MineCoords)
         {
-            ElementArray[MineArray_X[i], MineArray_Y[i]].IsMine = true;
+            ElementArray[nextMine.x, nextMine.y].IsMine = true;
         }
     }
 
