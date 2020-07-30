@@ -125,6 +125,28 @@ public class GridManager : MonoBehaviour
         return true;
     }
 
+    public void UnCoverMines()   //게임 클리어 시 지뢰 공개
+    {
+        foreach (var item in ElementArray)
+        {
+            if (item.IsMine)
+            {
+                item.SetChangeTexture(10);
+            }
+        }
+    }
+
+    public void ResetGame()   //게임 초기화
+    {
+        for (int yy = 0; yy < HeightBlock; ++yy)
+        {
+            for (int xx = 0; xx < WidthBlock; ++xx)
+            {
+                ElementArray[xx, yy].SetChangeTexture(11);
+            }
+        }
+    }
+
     void Start()
     {
         TileGenarator();

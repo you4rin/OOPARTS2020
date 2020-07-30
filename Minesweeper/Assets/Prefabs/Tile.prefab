@@ -100,12 +100,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 62a49d2d5547b7e498bf0e9bf6801d17, type: 3}
   - {fileID: 21300000, guid: 63c4bff1eadd96948b3d3d7ef86f11f4, type: 3}
   - {fileID: 21300000, guid: 988097851ceece647a43433e7892fc7d, type: 3}
-  - {fileID: 21300000, guid: 2d8fdccec265cdf488081df1d7efdf8b, type: 3}
-  - {fileID: 21300000, guid: c93cefd4c2a4add4a9cc134128a8c4b9, type: 3}
+  - {fileID: 21300000, guid: df8af50e7dea6b645b8b5e465a824974, type: 3}
+  - {fileID: 21300000, guid: 118a5645438946a48aefe98b18549093, type: 3}
   - {fileID: 21300000, guid: 1ff4bf7ad3ca34440a34e047d076d4f5, type: 3}
   - {fileID: 21300000, guid: bc7b4a6508748514781d6d5c354cdbbb, type: 3}
   - {fileID: 21300000, guid: 7d7742b107d828d4181e317c0783a6ed, type: 3}
   - {fileID: 21300000, guid: 6e34c2502d9d1564b9fd126e5303d837, type: 3}
+  - {fileID: 21300000, guid: 63322187f844ee54e9e5e36367c82574, type: 3}
+  - {fileID: 21300000, guid: 3fe04679d87e192429cb843c244724a0, type: 3}
   MineSprite: {fileID: 21300000, guid: 8684dad9027d019418f5f48130fcc6aa, type: 3}
 --- !u!61 &8905756036042969196
 BoxCollider2D:
