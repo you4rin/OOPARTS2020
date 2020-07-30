@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,8 +15,9 @@ public class GridManager : MonoBehaviour
     protected int RemainMines;
 
     public Tile[,] ElementArray;
-    public List<int> MineArray_Y_0부터 = new List<int>();   //세로
-    public List<int> MineArray_X_0부터 = new List<int>();   //가로
+    public List<Vector2Int> MineCoords = new List<Vector2Int>();
+    public List<Vector2Int> HintList = new List<Vector2Int>();
+ 
 
     void Awake()
     {
@@ -76,9 +78,17 @@ public class GridManager : MonoBehaviour
 
     void SettingMines()   //지뢰 세팅
     {
-        for (int i = 0; i < MineArray_Y_0부터.Count; i++)
+        foreach (Vector2Int nextMine in MineCoords)
         {
-            ElementArray[MineArray_X_0부터[i], MineArray_Y_0부터[i]].IsMine = true;
+            ElementArray[nextMine.x, nextMine.y].IsMine = true;
+        }
+    }
+
+    void SetHint()
+    {
+        foreach (Vector2Int nextHint in HintList)
+        {
+            ElementArray[nextHint.x, nextHint.y].LeftClick();
         }
     }
 
@@ -90,7 +100,7 @@ public class GridManager : MonoBehaviour
     }
     */
 
-    public void FFunCover(int p_x, int p_y, bool[,] p_visited)   //지뢰가 아닌 주변 타일 공개
+    public void UncoverNearby(int p_x, int p_y, bool[,] p_visited)   //지뢰가 아닌 주변 타일 공개
     {
         if ((p_x >= 0 && p_x < WidthBlock)
             && (p_y >= 0 && p_y < HeightBlock))
@@ -105,10 +115,10 @@ public class GridManager : MonoBehaviour
 
             p_visited[p_x, p_y] = true;
 
-            FFunCover(p_x + 1, p_y, p_visited);
-            FFunCover(p_x - 1, p_y, p_visited);
-            FFunCover(p_x, p_y + 1, p_visited);
-            FFunCover(p_x, p_y - 1, p_visited);
+            UncoverNearby(p_x + 1, p_y, p_visited);
+            UncoverNearby(p_x - 1, p_y, p_visited);
+            UncoverNearby(p_x, p_y + 1, p_visited);
+            UncoverNearby(p_x, p_y - 1, p_visited);
         }
 
     }
@@ -117,7 +127,7 @@ public class GridManager : MonoBehaviour
     {
         foreach (var item in ElementArray)
         {
-            if (item.IsCovered() && !item.IsMine)
+            if (item.IsCovered() && item.IsMine)
             {
                 return false;
             }
@@ -125,7 +135,7 @@ public class GridManager : MonoBehaviour
         return true;
     }
 
-    public void UnCoverMines()   //게임 클리어 시 지뢰 공개
+    public void ShowMine()   //게임 클리어 시 지뢰 공개
     {
         foreach (var item in ElementArray)
         {
@@ -151,31 +161,8 @@ public class GridManager : MonoBehaviour
     {
         TileGenarator();
         SettingMines();
+        SetHint();
     }
 
-    /*     마우스 우클릭 <오류남>
-    public Camera cam;
-    public Sprite FlagSprite;
-    public Sprite DefaultSprite;
-    void Update()
-    {
-        
-        if (Input.GetMouseButtonDown(1))
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                Debug.LogFormat("ok");
-                SpriteRenderer SubSpriteRender = hit.transform.GetComponent<SpriteRenderer>();
-                if (SubSpriteRender.sprite == FlagSprite)
-                {
-                    SubSpriteRender.sprite = DefaultSprite;
-                }
-                SubSpriteRender.sprite = FlagSprite;
-            }
-        }
-        
-    }
-    */
+
 }

@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+
     // Start is called before the first frame update
 
     public Sprite[] ChangeSpriteArray;
     public Sprite MineSprite;
     private SpriteRenderer m_SpriteRender;
     protected GridManager LinkGridManager;
+    public Sprite FlagSprite;
+    public Sprite QuestionSprite;
+    const int NORMAL_SPRITE = 11;
 
     //지뢰 관련>>
     private bool m_IsMine = false;
@@ -30,7 +34,7 @@ public class Tile : MonoBehaviour
         m_SpriteRender.sprite = ChangeSpriteArray[P_index];
     }
 
-    void OnMouseDown()   //클릭 후 작동
+    public void LeftClick()   //좌클릭 후 작동
     {
 
         if (m_IsMine)   //게임오버
@@ -47,13 +51,27 @@ public class Tile : MonoBehaviour
             SetChangeTexture( LinkGridManager.NumberOfMines(x, y) );
             //Debug.LogFormat("{0}", LinkGridManager.NumberOfMines(x, y));  //확인용
 
-            LinkGridManager.FFunCover(x, y, new bool[LinkGridManager.WidthBlock, LinkGridManager.HeightBlock]);
+            LinkGridManager.UncoverNearby(x, y, new bool[LinkGridManager.WidthBlock, LinkGridManager.HeightBlock]);
 
-            if (LinkGridManager.IsFinished())   //스테이지 클리어
-            {
-                LinkGridManager.UnCoverMines();
-                Debug.LogFormat("스테이지 클리어");
-            }
+        }
+    }
+
+    public void RightClick() //우클릭 후 작동
+    {
+        if (m_SpriteRender.sprite == ChangeSpriteArray[NORMAL_SPRITE])
+        {
+            m_SpriteRender.sprite = FlagSprite;
+            return;
+        }
+        if (m_SpriteRender.sprite == FlagSprite)
+        {
+            m_SpriteRender.sprite = QuestionSprite;
+            return;
+        }
+        if (m_SpriteRender.sprite == QuestionSprite)
+        {
+            SetChangeTexture(NORMAL_SPRITE);
+            return;
         }
     }
 
@@ -62,15 +80,34 @@ public class Tile : MonoBehaviour
         return m_SpriteRender.sprite.texture.name == "tile-normal-1";
     }
 
-    void Start()
+
+    void OnEnable()
     {
         m_SpriteRender = this.GetComponent<SpriteRenderer>();
         LinkGridManager = GameObject.FindObjectOfType<GridManager>();
 
     }
 
-    void Update()
+    private void OnMouseOver()
     {
-        
+        if (Input.GetMouseButtonDown(0)) //Left button
+        {
+            LeftClick();
+            if (LinkGridManager.IsFinished())   //스테이지 클리어
+            {
+                LinkGridManager.ShowMine();
+                Debug.LogFormat("스테이지 클리어");
+            }
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            RightClick();
+            if (LinkGridManager.IsFinished())   //스테이지 클리어
+            {
+                LinkGridManager.ShowMine();
+                Debug.LogFormat("스테이지 클리어");
+            }
+        }
     }
+
 }

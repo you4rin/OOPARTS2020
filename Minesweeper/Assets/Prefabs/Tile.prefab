@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6697712771386009673}
   - component: {fileID: 4369165882831813636}
   - component: {fileID: 8355554765639934054}
-  - component: {fileID: 8905756036042969196}
+  - component: {fileID: 1830075700173790929}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChangeSpriteArray:
-  - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 21300000, guid: f2c8cdced2ef35f47a311a9d22a3d0ae, type: 3}
   - {fileID: 21300000, guid: 62a49d2d5547b7e498bf0e9bf6801d17, type: 3}
   - {fileID: 21300000, guid: 63c4bff1eadd96948b3d3d7ef86f11f4, type: 3}
   - {fileID: 21300000, guid: 988097851ceece647a43433e7892fc7d, type: 3}
@@ -109,29 +109,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 63322187f844ee54e9e5e36367c82574, type: 3}
   - {fileID: 21300000, guid: 3fe04679d87e192429cb843c244724a0, type: 3}
   MineSprite: {fileID: 21300000, guid: 8684dad9027d019418f5f48130fcc6aa, type: 3}
---- !u!61 &8905756036042969196
-BoxCollider2D:
+  FlagSprite: {fileID: 21300000, guid: 3ccb5a4446d4a9c47b1f39094e0fe373, type: 3}
+  QuestionSprite: {fileID: 21300000, guid: 7565336348d375f419465134ddf60d24, type: 3}
+--- !u!65 &1830075700173790929
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830428116830623920}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
-    newSize: {x: 5.12, y: 5.12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.12, y: 5.12}
-  m_EdgeRadius: 0
+  m_Size: {x: 5.12, y: 5.12, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
