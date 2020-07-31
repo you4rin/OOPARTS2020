@@ -669,7 +669,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1611405456}
-        m_MethodName: PlayButtonOnClick
+        m_MethodName: MoveToStageSelect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -977,6 +977,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 0}
   mainObject: {fileID: 0}
+  stageTexts: {fileID: 0}
+  clearObjects: {fileID: 0}
+  gameOverObjects: {fileID: 0}
+  gridManager: {fileID: 0}
   pauseButton: {fileID: 0}
 --- !u!1 &1736910081
 GameObject:

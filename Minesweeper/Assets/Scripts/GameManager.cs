@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-	private bool tutorial1;
-	private bool tutorial2;
 	private GridManager.GameState state;
 	public GameObject menu;
 	public GameObject mainObject;
@@ -16,15 +14,16 @@ public class GameManager : MonoBehaviour
 	public GameObject gameOverObjects;
 	public GridManager gridManager;
 	public Button pauseButton;
+
 	// Start is called before the first frame update
 	void Start() {
-		tutorial1 = tutorial2 = false;
+
 	}
 
 	// Update is called once per frame
 	void Update() {
 		if ( SceneManager.GetActiveScene().name != "Main" && SceneManager.GetActiveScene().name != "StageSelect" ) {
-			if ( state != gridManager.state ) {
+			if ( state!=gridManager.state ) {
 				if ( gridManager.state == GridManager.GameState.cleared ) {
 					LoadClearPage();
 				}
@@ -64,31 +63,7 @@ public class GameManager : MonoBehaviour
 		gameOverObjects.gameObject.SetActive(true);
 	}
 
-	void RollBack1() {
-		// Rollback to before the tutorial1
-		tutorial1 = false;
-	}
-	
-	void RollBack2() {
-		//Rollback to before the tutorial2
-		tutorial2 = false;
-	}
-
 	//Button Clicks
-	public void PlayButtonOnClick() {
-		if ( tutorial2 ) {
-			MoveToStageSelect();
-		}
-		else if ( tutorial1 ) {
-			tutorial2 = true;
-			MoveToTutorial2();
-		}
-		else {
-			tutorial1 = true;
-			MoveToTutorial1();
-		}
-	}
-
 	public void QuitButtonOnClick() {
 #if UNITY_EDITOR
 		UnityEditor.EditorApplication.isPlaying = false;
@@ -98,14 +73,8 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void MainMenuButtonOnClick() {
-		MoveToMain();
-		SetObjectsActive(true);
-		if ( SceneManager.GetActiveScene().name == "Tutorial1" ) {
-			RollBack1();
-			gridManager.ResetGame();
-		}
-		else if ( SceneManager.GetActiveScene().name == "Tutorial2" ) {
-			RollBack2();
+		MoveToStageSelect();
+		if ( SceneManager.GetActiveScene().name == "Tutorial1" || SceneManager.GetActiveScene().name == "Tutorial2" ) {
 			gridManager.ResetGame();
 		}
 		else if ( gridManager.state == GridManager.GameState.cleared ) {
@@ -119,16 +88,17 @@ public class GameManager : MonoBehaviour
 		else {
 			CloseMenu();
 		}
+		SetObjectsActive(true);
 	}
 
 	public void NextStageButtonOnClick() {
+		gridManager.ResetGame();
 		if ( SceneManager.GetActiveScene().name == "Tutorial1" ) {
 			MoveToTutorial2();
 		}
 		else {
 			MoveToStageSelect();
 		}
-		gridManager.ResetGame();
 	}
 
 	public void RestartButtonOnClick() {
