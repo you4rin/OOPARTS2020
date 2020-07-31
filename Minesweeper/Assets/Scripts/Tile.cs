@@ -23,6 +23,8 @@ public class Tile : MonoBehaviour
         get { return m_IsMine; }
         set { m_IsMine = value; }
     }
+
+
     public void SetElementDatas(bool p_ismine)
     {
         m_IsMine = p_ismine;
@@ -81,9 +83,9 @@ public class Tile : MonoBehaviour
         return m_SpriteRender.sprite == ChangeSpriteArray[NORMAL_SPRITE];
     }
 
-    public bool IsFlagged() //깃발이 꽂혀 있는가 여부
+    public bool IsMarked() //표식이 되어 있는가 여부
     {
-        return m_SpriteRender.sprite == FlagSprite;
+        return m_SpriteRender.sprite == FlagSprite || m_SpriteRender.sprite == QuestionSprite;
     }
     void OnEnable()
     {

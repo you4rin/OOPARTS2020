@@ -117,6 +117,9 @@ public class GridManager : MonoBehaviour
             if (p_visited[p_x, p_y])
                 return;
 
+            if (ElementArray[p_x, p_y].IsMarked()) //잘못 표시한 깃발은 그대로 놔두기
+                return;
+
             int aroundcount = NumberOfMines(p_x, p_y);
             ElementArray[p_x, p_y].SetChangeTexture(aroundcount);
             if (aroundcount > 0)
@@ -137,7 +140,7 @@ public class GridManager : MonoBehaviour
         foreach (Tile tile in ElementArray)
         {
             if (tile.IsCovered()) return false;
-            if (tile.IsFlagged() && tile.IsMine == false) return false;
+            if (tile.IsMarked() && tile.IsMine == false) return false;
 
         }
         state = GameState.cleared;
