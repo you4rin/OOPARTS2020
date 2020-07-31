@@ -77,10 +77,13 @@ public class Tile : MonoBehaviour
 
     public bool IsCovered()   //타일 클릭 여부
     {
-        return m_SpriteRender.sprite.texture.name == "tile-normal-1";
+        return m_SpriteRender.sprite == ChangeSpriteArray[NORMAL_SPRITE];
     }
 
-
+    public bool IsFlagged() //깃발이 꽂혀 있는가 여부
+    {
+        return m_SpriteRender.sprite == FlagSprite;
+    }
     void OnEnable()
     {
         m_SpriteRender = this.GetComponent<SpriteRenderer>();

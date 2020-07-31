@@ -127,10 +127,9 @@ public class GridManager : MonoBehaviour
     {
         foreach (Tile tile in ElementArray)
         {
-            if (tile.IsCovered() && tile.IsMine)
-            {
-                return false;
-            }
+            if (tile.IsCovered()) return false;
+            if (tile.IsFlagged() && tile.IsMine == false) return false;
+
         }
         return true;
     }
