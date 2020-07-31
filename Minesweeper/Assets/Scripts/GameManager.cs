@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 	private bool firstPlay;
 	public GameObject menu;
 	public GameObject mainObject;
+	public GridManager gridManager;
 	public Button pauseButton;
 	// Start is called before the first frame update
 	void Start() {
