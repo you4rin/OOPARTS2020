@@ -185,7 +185,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &265302882
 PrefabInstance:
@@ -379,6 +379,11 @@ PrefabInstance:
       propertyPath: HintList.Array.data[3].y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
+        type: 3}
+      propertyPath: ParentObject
+      value: 
+      objectReference: {fileID: 1478751459}
     - target: {fileID: 7462933388930458145, guid: d0c1a95d647f59f44a54c34f23e79d5a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -645,6 +650,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &478812569 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8290541007102106275, guid: d0c1a95d647f59f44a54c34f23e79d5a,
+    type: 3}
+  m_PrefabInstance: {fileID: 265302882}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1773428102 &478812570
+ParentConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478812569}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_TranslationOffsets: []
+  m_RotationOffsets: []
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources: []
 --- !u!1 &489311795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,7 +1363,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 265302882}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 478812569}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ded752a7a25fff4abac2f7eab106c10, type: 3}
@@ -2011,12 +2044,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478751459}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 265302883}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1566944672
 GameObject:
