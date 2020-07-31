@@ -6,14 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-	private bool firstPlay;
+	private bool tutorial1;
+	private bool tutorial2;
 	public GameObject menu;
 	public GameObject mainObject;
+	public GameObject stageTexts;
+	public GameObject clearObjects;
+	public GameObject gameOverObjects;
 	public GridManager gridManager;
 	public Button pauseButton;
 	// Start is called before the first frame update
 	void Start() {
-		firstPlay = true;
+		tutorial1 = tutorial2 = false;
 	}
 
 	// Update is called once per frame
@@ -35,13 +39,43 @@ public class GameManager : MonoBehaviour
 		pauseButton.gameObject.SetActive(true);
 	}
 
+	public void HideStageTexts() {
+		// Hide Texts
+		stageTexts.gameObject.SetActive(false);
+	}
+
+	public void ShowStageTexts() {
+		// Show Texts
+		stageTexts.gameObject.SetActive(true);
+		mainObject.gameObject.SetActive(false);
+	}
+
+	public void LoadClearPage() {
+		HideStageTexts();
+
+	}
+
+	public void RollBack1() {
+		// Rollback to before the tutorial1
+		tutorial1 = false;
+	}
+	
+	public void RollBack2() {
+		//Rollback to before the tutorial2
+		tutorial2 = false;
+	}
+
 	public void PlayButtonOnClick() {
-		if ( firstPlay ) {
-			firstPlay = false;
-			MoveToTutorial1();
+		if ( tutorial2 ) {
+			MoveToStageSelect();
+		}
+		else if ( tutorial1 ) {
+			tutorial2 = true;
+			MoveToTutorial2();
 		}
 		else {
-			MoveToStageSelect();
+			tutorial1 = true;
+			MoveToTutorial1();
 		}
 	}
 
@@ -51,6 +85,24 @@ public class GameManager : MonoBehaviour
 #else
 		Application.Quit();
 #endif
+	}
+
+	public void MainMenuButtonOnClick() {
+		if ( SceneManager.GetActiveScene().name == "Tutorial1" ) {
+			RollBack1();
+			gridManager.ResetGame();
+		}
+		if( SceneManager.GetActiveScene().name == "Tutorial2" ) {
+			RollBack2();
+			gridManager.ResetGame();
+		}
+		if ( gridManager.IsFinished() ) {
+			gridManager.ResetGame();
+			// if문에 게임오버 여부 판단도 필요
+		}
+		MoveToMain();
+		ShowStageTexts();
+		CloseMenu();
 	}
 
 	//Scene transitions
