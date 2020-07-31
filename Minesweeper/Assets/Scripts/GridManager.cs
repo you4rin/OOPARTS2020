@@ -162,6 +162,7 @@ public class GridManager : MonoBehaviour
             tile.ResetTile();
         }
         SetHint();
+        state = GameState.gaming;
 
     }
 
