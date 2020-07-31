@@ -17,6 +17,15 @@ public class GridManager : MonoBehaviour
     public Tile[,] ElementArray;
     public List<Vector2Int> MineCoords = new List<Vector2Int>();
     public List<Vector2Int> HintList = new List<Vector2Int>();
+
+    public enum GameState
+    {
+        gaming,
+        cleared,
+        failed
+    }
+    public GameState state;
+
  
 
     void Awake()
@@ -131,6 +140,7 @@ public class GridManager : MonoBehaviour
             if (tile.IsFlagged() && tile.IsMine == false) return false;
 
         }
+        state = GameState.cleared;
         return true;
     }
 
@@ -160,7 +170,7 @@ public class GridManager : MonoBehaviour
         TileGenarator();
         SettingMines();
         SetHint();
+        state = GameState.gaming;
     }
-
 
 }

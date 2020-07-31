@@ -40,6 +40,7 @@ public class Tile : MonoBehaviour
         if (m_IsMine)   //게임오버
         {
             m_SpriteRender.sprite = MineSprite;
+            LinkGridManager.state = GridManager.GameState.failed;
 
             Debug.LogFormat("게임오버");
 
