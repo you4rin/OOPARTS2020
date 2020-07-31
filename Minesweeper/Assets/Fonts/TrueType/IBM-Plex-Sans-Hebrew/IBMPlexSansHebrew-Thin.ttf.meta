@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 542e17fc98b48ec4786f7d570c1512c3
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: IBM Plex Sans Hebrew
+  fontNames:
+  - IBM Plex Sans Hebrew
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c1b4f2d501005004d954e22127978d98, type: 3}
+  - {fileID: 12800000, guid: f2793ce677a806e4f99c3054e7d51c38, type: 3}
+  - {fileID: 12800000, guid: 834b530b395af2040bed72ec49dbf74e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
