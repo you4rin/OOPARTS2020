@@ -110,4 +110,8 @@ public class Tile : MonoBehaviour
         }
     }
 
+    public void ResetTile()
+    {
+        m_SpriteRender.sprite = ChangeSpriteArray[NORMAL_SPRITE];
+    }
 }
