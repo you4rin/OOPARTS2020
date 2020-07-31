@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 	private GridManager.GameState state;
+	private bool finished;
+	private float time;
 	public GameObject menu;
 	public GameObject mainObject;
 	public GameObject stageTexts;
@@ -17,21 +19,29 @@ public class GameManager : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start() {
-
+		
 	}
 
 	// Update is called once per frame
 	void Update() {
+		if ( finished ) {
+			time += Time.deltaTime;
+		}
 		if ( SceneManager.GetActiveScene().name != "Main" && SceneManager.GetActiveScene().name != "StageSelect" ) {
 			if ( state!=gridManager.state ) {
-				if ( gridManager.state == GridManager.GameState.cleared ) {
-					LoadClearPage();
-				}
-				else if( gridManager.state == GridManager.GameState.failed ) {
-					LoadGameOverPage();
+				if ( gridManager.state != GridManager.GameState.gaming ) {
+					finished = true;
 				}
 			}
 			state = gridManager.state;
+		}
+		if ( time > 2 ) {
+			if( gridManager.state == GridManager.GameState.cleared ) {
+				LoadClearPage();
+			}
+			else if( gridManager.state == GridManager.GameState.failed ) {
+				LoadGameOverPage();
+			}
 		}
 	}
 
@@ -74,6 +84,7 @@ public class GameManager : MonoBehaviour
 
 	public void MainMenuButtonOnClick() {
 		MoveToStageSelect();
+		time = 0;
 		if ( SceneManager.GetActiveScene().name == "Tutorial1" || SceneManager.GetActiveScene().name == "Tutorial2" ) {
 			gridManager.ResetGame();
 		}
@@ -93,6 +104,7 @@ public class GameManager : MonoBehaviour
 
 	public void NextStageButtonOnClick() {
 		gridManager.ResetGame();
+		time = 0;
 		if ( SceneManager.GetActiveScene().name == "Tutorial1" ) {
 			MoveToTutorial2();
 		}
@@ -102,6 +114,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void RestartButtonOnClick() {
+		time = 0;
 		gridManager.ResetGame();
 		gameOverObjects.gameObject.SetActive(false);
 		SetObjectsActive(true);
