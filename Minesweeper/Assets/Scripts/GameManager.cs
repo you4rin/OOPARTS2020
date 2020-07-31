@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
 	private bool tutorial1;
 	private bool tutorial2;
+	private GridManager.GameState state;
 	public GameObject menu;
 	public GameObject mainObject;
 	public GameObject stageTexts;
@@ -22,49 +23,58 @@ public class GameManager : MonoBehaviour
 
 	// Update is called once per frame
 	void Update() {
-
+		if ( SceneManager.GetActiveScene().name != "Main" && SceneManager.GetActiveScene().name != "StageSelect" ) {
+			if ( state != gridManager.state ) {
+				if ( gridManager.state == GridManager.GameState.cleared ) {
+					LoadClearPage();
+				}
+				else if( gridManager.state == GridManager.GameState.failed ) {
+					LoadGameOverPage();
+				}
+			}
+			state = gridManager.state;
+		}
 	}
 
-	public void LoadMenu() {
+	public void SetObjectsActive(bool state) {
+		pauseButton.gameObject.SetActive(state);
+		mainObject.gameObject.SetActive(state);
+		stageTexts.gameObject.SetActive(state);
+	}
+
+	void LoadMenu() {
 		// Activate Menu object
-		pauseButton.gameObject.SetActive(false);
-		mainObject.gameObject.SetActive(false);
+		SetObjectsActive(false);
 		menu.gameObject.SetActive(true);
 	}
 
-	public void CloseMenu() {
+	void CloseMenu() {
 		// Deactivate Menu object
 		menu.gameObject.SetActive(false);
-		mainObject.gameObject.SetActive(true);
-		pauseButton.gameObject.SetActive(true);
+		SetObjectsActive(true);
 	}
 
-	public void HideStageTexts() {
-		// Hide Texts
-		stageTexts.gameObject.SetActive(false);
+	void LoadClearPage() {
+		SetObjectsActive(false);
+		clearObjects.gameObject.SetActive(true);
 	}
 
-	public void ShowStageTexts() {
-		// Show Texts
-		stageTexts.gameObject.SetActive(true);
-		mainObject.gameObject.SetActive(false);
+	void LoadGameOverPage() {
+		SetObjectsActive(false);
+		gameOverObjects.gameObject.SetActive(true);
 	}
 
-	public void LoadClearPage() {
-		HideStageTexts();
-
-	}
-
-	public void RollBack1() {
+	void RollBack1() {
 		// Rollback to before the tutorial1
 		tutorial1 = false;
 	}
 	
-	public void RollBack2() {
+	void RollBack2() {
 		//Rollback to before the tutorial2
 		tutorial2 = false;
 	}
 
+	//Button Clicks
 	public void PlayButtonOnClick() {
 		if ( tutorial2 ) {
 			MoveToStageSelect();
@@ -88,21 +98,51 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void MainMenuButtonOnClick() {
+		MoveToMain();
+		SetObjectsActive(true);
 		if ( SceneManager.GetActiveScene().name == "Tutorial1" ) {
 			RollBack1();
 			gridManager.ResetGame();
 		}
-		if( SceneManager.GetActiveScene().name == "Tutorial2" ) {
+		else if ( SceneManager.GetActiveScene().name == "Tutorial2" ) {
 			RollBack2();
 			gridManager.ResetGame();
 		}
-		if ( gridManager.IsFinished() ) {
+		else if ( gridManager.state == GridManager.GameState.cleared ) {
 			gridManager.ResetGame();
-			// if문에 게임오버 여부 판단도 필요
+			clearObjects.gameObject.SetActive(false);
 		}
-		MoveToMain();
-		ShowStageTexts();
+		else if ( gridManager.state == GridManager.GameState.failed ) {
+			gridManager.ResetGame();
+			gameOverObjects.gameObject.SetActive(false);
+		}
+		else {
+			CloseMenu();
+		}
+	}
+
+	public void NextStageButtonOnClick() {
+		if ( SceneManager.GetActiveScene().name == "Tutorial1" ) {
+			MoveToTutorial2();
+		}
+		else {
+			MoveToStageSelect();
+		}
+		gridManager.ResetGame();
+	}
+
+	public void RestartButtonOnClick() {
+		gridManager.ResetGame();
+		gameOverObjects.gameObject.SetActive(false);
+		SetObjectsActive(true);
+	}
+
+	public void ResumeButtonOnClick() {
 		CloseMenu();
+	}
+
+	public void PauseButtonOnClick() {
+		LoadMenu();
 	}
 
 	//Scene transitions
