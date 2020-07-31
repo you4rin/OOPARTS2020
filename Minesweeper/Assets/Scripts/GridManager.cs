@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.GameCenter;
 using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
@@ -26,11 +27,18 @@ public class GridManager : MonoBehaviour
     }
     public GameState state;
 
- 
 
     void Awake()
     {
         ElementArray = new Tile[WidthBlock, HeightBlock];
+    }
+
+    void MoveToCenter()
+    {
+        Vector3 parent_transform = this.transform.parent.position;
+        Vector3 center_pivot = new Vector3(-((WidthBlock - 1) / 2.0f), -((HeightBlock - 1) / 2.0f), 0);
+        this.transform.position = center_pivot + parent_transform;
+
     }
 
     Tile CloneTile(int p_x, int p_y)   //타일 복제
@@ -171,6 +179,7 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
+        MoveToCenter();
         TileGenarator();
         SettingMines();
         SetHint();
