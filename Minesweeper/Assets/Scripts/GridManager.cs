@@ -125,36 +125,34 @@ public class GridManager : MonoBehaviour
 
     public bool IsFinished()   //게임 끝났는지 확인
     {
-        foreach (var item in ElementArray)
+        foreach (Tile tile in ElementArray)
         {
-            if (item.IsCovered() && item.IsMine)
-            {
-                return false;
-            }
+            if (tile.IsCovered()) return false;
+            if (tile.IsFlagged() && tile.IsMine == false) return false;
+
         }
         return true;
     }
 
     public void ShowMine()   //게임 클리어 시 지뢰 공개
     {
-        foreach (var item in ElementArray)
+        foreach (Tile tile in ElementArray)
         {
-            if (item.IsMine)
+            if (tile.IsMine)
             {
-                item.SetChangeTexture(10);
+                tile.SetChangeTexture(10);
             }
         }
     }
 
     public void ResetGame()   //게임 초기화
     {
-        for (int yy = 0; yy < HeightBlock; ++yy)
+        foreach (Tile tile in ElementArray)
         {
-            for (int xx = 0; xx < WidthBlock; ++xx)
-            {
-                ElementArray[xx, yy].SetChangeTexture(11);
-            }
+            tile.ResetTile();
         }
+        SetHint();
+
     }
 
     void Start()
