@@ -45,11 +45,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CloneBlock: {fileID: 1830428116830623920, guid: 621ae1df052c302438cfdfa0d4248021,
     type: 3}
+  Border: {fileID: 2166365484629286913, guid: 3756527711e7b464e97436a964c828fb, type: 3}
   WidthBlock: 10
   HeightBlock: 10
   CountOfMines: 0
-  "MineArray_Y_0\uBD80\uD130": 
-  "MineArray_X_0\uBD80\uD130": 
-  cam: {fileID: 0}
-  FlagSprite: {fileID: 21300000, guid: 3ccb5a4446d4a9c47b1f39094e0fe373, type: 3}
-  DefaultSprite: {fileID: 21300000, guid: 3fe04679d87e192429cb843c244724a0, type: 3}
+  MineCoords: []
+  HintList: []
+  HBorderCoords: []
+  VBorderCoords: []
+  state: 0

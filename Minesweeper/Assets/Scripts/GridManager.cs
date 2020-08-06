@@ -9,15 +9,18 @@ public class GridManager : MonoBehaviour
 {
 
     public GameObject CloneBlock;
+    public GameObject Border;
 
     public int WidthBlock = 10;
     public int HeightBlock = 10;
-    public int CountOfMines = 0;
     protected int RemainMines;
 
     public Tile[,] ElementArray;
     public List<Vector2Int> MineCoords = new List<Vector2Int>();
     public List<Vector2Int> HintList = new List<Vector2Int>();
+
+    public List<Vector2Int> HBorderCoords = new List<Vector2Int>(); //Horizental borders
+    public List<Vector2Int> VBorderCoords = new List<Vector2Int>(); //Vertical borders
 
     public enum GameState
     {
@@ -37,6 +40,9 @@ public class GridManager : MonoBehaviour
     {
         Vector3 parent_transform = this.transform.parent.position;
         Vector3 center_pivot = new Vector3(-((WidthBlock - 1) / 2.0f), -((HeightBlock - 1) / 2.0f), 0);
+        Vector3 parent_scale = this.transform.parent.localScale;
+        center_pivot.x *= parent_scale.x;
+        center_pivot.y *= parent_scale.y;
         this.transform.position = center_pivot + parent_transform;
 
     }
@@ -48,9 +54,35 @@ public class GridManager : MonoBehaviour
 
         Vector2 temppos = new Vector2(p_x, p_y);
         CopyObj.transform.localPosition = temppos;
+        CopyObj.transform.localScale = CopyObj.transform.lossyScale;
         CopyObj.name = "CloneBlock_" + p_x.ToString() + "_" + p_y.ToString();
 
         return CopyObj.GetComponent<Tile>();
+    }
+
+    void CloneVerticalBorder(int x, int y)
+    {
+        GameObject CopyObj = GameObject.Instantiate(Border.gameObject);
+        CopyObj.transform.SetParent(this.transform);
+
+        Vector3 temppos = new Vector3(x + 0.5f, y, 0);
+        CopyObj.transform.localPosition = temppos;
+        CopyObj.transform.localScale = CopyObj.transform.lossyScale;
+        CopyObj.name = "CloneVBorder_" + x.ToString() + "_" + y.ToString();
+    }
+
+    void CloneHorizontalBorder(int x, int y)
+    {
+        GameObject CopyObj = GameObject.Instantiate(Border.gameObject);
+        CopyObj.transform.SetParent(this.transform);
+
+        Vector3 temppos = new Vector3(x, y + 0.5f, 0);
+        CopyObj.transform.localPosition = temppos;
+        CopyObj.transform.localScale = CopyObj.transform.lossyScale;
+
+        Vector3 temprot = new Vector3(0, 0, 90);
+        CopyObj.transform.eulerAngles = temprot;
+        CopyObj.name = "CloneHBorder_" + x.ToString() + "_" + y.ToString();
     }
 
     void TileGenarator()   //타일 생성
@@ -61,6 +93,28 @@ public class GridManager : MonoBehaviour
             {
                 ElementArray[xx, yy] = CloneTile(xx, yy);
             }
+        }
+    }
+
+    void BorderGenerator()
+    {
+        for (int x=0; x < WidthBlock; ++x)
+        {
+            CloneHorizontalBorder(x, -1);
+            CloneHorizontalBorder(x, HeightBlock - 1);
+        }
+        for (int y = 0; y < HeightBlock; ++y)
+        {
+            CloneVerticalBorder(-1, y);
+            CloneVerticalBorder(WidthBlock - 1, y);
+        }
+        foreach (var next_coord in HBorderCoords)
+        {
+            CloneHorizontalBorder(next_coord.x, next_coord.y);
+        }
+        foreach (var next_coord in VBorderCoords)
+        {
+            CloneVerticalBorder(next_coord.x, next_coord.y);
         }
     }
 
@@ -181,6 +235,7 @@ public class GridManager : MonoBehaviour
     {
         MoveToCenter();
         TileGenarator();
+        BorderGenerator();
         SettingMines();
         SetHint();
         state = GameState.gaming;
