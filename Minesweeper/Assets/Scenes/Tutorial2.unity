@@ -1094,7 +1094,7 @@ PrefabInstance:
     - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
         type: 3}
       propertyPath: HintList.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
         type: 3}
@@ -1129,7 +1129,7 @@ PrefabInstance:
     - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
         type: 3}
       propertyPath: MineCoords.Array.data[1].y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
         type: 3}
@@ -1269,7 +1269,7 @@ PrefabInstance:
     - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
         type: 3}
       propertyPath: MineCoords.Array.data[3].y
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2061754369073703860, guid: d0c1a95d647f59f44a54c34f23e79d5a,
         type: 3}
