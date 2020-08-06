@@ -30,7 +30,11 @@ public class GameManager : MonoBehaviour
 		if ( SceneManager.GetActiveScene().name != "Main" && SceneManager.GetActiveScene().name != "StageSelect" ) {
 			if ( state!=gridManager.state ) {
 				if ( gridManager.state != GridManager.GameState.gaming ) {
+					pauseButton.gameObject.SetActive(false);
 					finished = true;
+				}
+				else {
+					pauseButton.gameObject.SetActive(true);
 				}
 			}
 			state = gridManager.state;
@@ -84,22 +88,6 @@ public class GameManager : MonoBehaviour
 
 	public void MainMenuButtonOnClick() {
 		MoveToStageSelect();
-		time = 0;
-		if ( SceneManager.GetActiveScene().name == "Tutorial1" || SceneManager.GetActiveScene().name == "Tutorial2" ) {
-			gridManager.ResetGame();
-		}
-		else if ( gridManager.state == GridManager.GameState.cleared ) {
-			gridManager.ResetGame();
-			clearObjects.gameObject.SetActive(false);
-		}
-		else if ( gridManager.state == GridManager.GameState.failed ) {
-			gridManager.ResetGame();
-			gameOverObjects.gameObject.SetActive(false);
-		}
-		else {
-			CloseMenu();
-		}
-		SetObjectsActive(true);
 	}
 
 	public void NextStageButtonOnClick() {
