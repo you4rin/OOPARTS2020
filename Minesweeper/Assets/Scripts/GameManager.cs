@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 				if ( gridManager.state != GridManager.GameState.gaming ) {
 					pauseButton.gameObject.SetActive(false);
 					finished = true;
+					time = 0;
 				}
 				else {
 					pauseButton.gameObject.SetActive(true);
