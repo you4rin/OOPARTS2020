@@ -38,24 +38,26 @@ public class Tile : MonoBehaviour
 
     public void LeftClick()   //좌클릭 후 작동
     {
-
-        if (m_IsMine)   //게임오버
+        if (m_SpriteRender.sprite != FlagSprite)
         {
-            m_SpriteRender.sprite = MineSprite;
-            LinkGridManager.state = GridManager.GameState.failed;
+            if (m_IsMine)   //게임오버
+            {
+                m_SpriteRender.sprite = MineSprite;
+                LinkGridManager.state = GridManager.GameState.failed;
 
-            Debug.LogFormat("게임오버");
+                Debug.LogFormat("게임오버");
 
-        }
-        else   //지뢰 갯수 찾기
-        {
-            int x = (int)this.transform.localPosition.x;
-            int y = (int)this.transform.localPosition.y;
-            SetChangeTexture( LinkGridManager.NumberOfMines(x, y) );
-            //Debug.LogFormat("{0}", LinkGridManager.NumberOfMines(x, y));  //확인용
+            }
+            else   //지뢰 갯수 찾기
+            {
+                int x = (int)this.transform.localPosition.x;
+                int y = (int)this.transform.localPosition.y;
+                SetChangeTexture(LinkGridManager.NumberOfMines(x, y));
+                //Debug.LogFormat("{0}", LinkGridManager.NumberOfMines(x, y));  //확인용
 
-            LinkGridManager.UncoverNearby(x, y, new bool[LinkGridManager.WidthBlock, LinkGridManager.HeightBlock]);
+                LinkGridManager.UncoverNearby(x, y, new bool[LinkGridManager.WidthBlock, LinkGridManager.HeightBlock]);
 
+            }
         }
     }
 
