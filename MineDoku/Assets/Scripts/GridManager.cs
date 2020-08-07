@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.GameCenter;
+//using UnityEngine.SocialPlatforms.GameCenter;
 using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
